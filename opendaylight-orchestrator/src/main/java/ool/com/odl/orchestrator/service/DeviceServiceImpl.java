@@ -1,5 +1,8 @@
 package ool.com.odl.orchestrator.service;
 
+import java.io.IOException;
+import java.util.Properties;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -11,6 +14,11 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
+import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopology;
+import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopologyImpl;
+import ool.com.odl.orchestrator.util.Config;
+import ool.com.odl.orchestrator.util.ConfigImpl;
+
 @Component
 public class DeviceServiceImpl implements DeviceService {
 	private static final Logger logger = Logger.getLogger(DeviceServiceImpl.class);
@@ -18,6 +26,8 @@ public class DeviceServiceImpl implements DeviceService {
 	@Inject
 	//DeviceBusiness deviceBiz;
 	Injector injector;
+	
+	Config conf = new ConfigImpl();
 
 	@Override
 	public Response createDevice(String newDeviceInfoJson) {
@@ -75,8 +85,14 @@ public class DeviceServiceImpl implements DeviceService {
 		DeviceServiceImpl main = injector.getInstance(DeviceServiceImpl.class);
 		//String resDeviceBiz = main.deviceBiz.readDeviceList();
 		
+		
+		
+		OpenFlowTopology func = new OpenFlowTopologyImpl(conf.getString("ipAddress"), conf.getString("port")); 
+		func.setAuthInfo(conf.getString("username"), conf.getString("password"));
+		String res = func.getTopology();
+		
 		//return Response.ok(resDeviceBiz).type(MediaType.APPLICATION_JSON_TYPE).build();
-		return Response.ok().type(MediaType.APPLICATION_JSON_TYPE).build();
+		return Response.ok(res).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 
 	@Override
