@@ -15,6 +15,10 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<listener>
+		<listener-class>ool.com.odl.orchestrator.background.task.TaskStarter</listener-class> 
+	</listener>
 
 	<servlet>
 		<servlet-name>CXFServlet</servlet-name>

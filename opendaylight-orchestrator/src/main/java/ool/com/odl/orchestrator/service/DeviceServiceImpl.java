@@ -15,6 +15,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopology;
+import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopologyData;
 import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopologyImpl;
 import ool.com.odl.orchestrator.util.Config;
 import ool.com.odl.orchestrator.util.ConfigImpl;
@@ -87,12 +88,13 @@ public class DeviceServiceImpl implements DeviceService {
 		
 		
 		
-		OpenFlowTopology func = new OpenFlowTopologyImpl(conf.getString("ipAddress"), conf.getString("port")); 
-		func.setAuthInfo(conf.getString("username"), conf.getString("password"));
-		String res = func.getTopology();
+		//OpenFlowTopology func = new OpenFlowTopologyImpl(conf.getString("ipAddress"), conf.getString("port")); 
+		//func.setAuthInfo(conf.getString("username"), conf.getString("password"));
+		//String res = func.getTopology();
 		
 		//return Response.ok(resDeviceBiz).type(MediaType.APPLICATION_JSON_TYPE).build();
-		return Response.ok(res).type(MediaType.APPLICATION_JSON_TYPE).build();
+		OpenFlowTopologyData preTopology = OpenFlowTopologyData.getPreTopology();
+		return Response.ok(preTopology.data).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 
 	@Override

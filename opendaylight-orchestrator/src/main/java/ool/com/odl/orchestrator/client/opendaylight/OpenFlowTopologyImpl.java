@@ -22,6 +22,14 @@ public class OpenFlowTopologyImpl implements OpenFlowTopology {
 		this.port = port;
 	}
 	
+	public OpenFlowTopologyImpl(String ipAddress, String port,
+			String userName, String password) {
+		this.ipAddress = ipAddress;
+		this.port = port;
+		this.userName = userName;
+		this.password = password;
+	}
+	
 	@Override
 	public void setAuthInfo(String userName, String password) {
 		this.userName = userName;
