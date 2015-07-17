@@ -93,8 +93,8 @@ public class DeviceServiceImpl implements DeviceService {
 		//String res = func.getTopology();
 		
 		//return Response.ok(resDeviceBiz).type(MediaType.APPLICATION_JSON_TYPE).build();
-		OpenFlowTopologyData preTopology = OpenFlowTopologyData.getPreTopology();
-		return Response.ok(preTopology.getEdgeProperties().get(0).getEdge().getHeadNodeConnector().getNode().getId()).type(MediaType.APPLICATION_JSON_TYPE).build();
+		//OpenFlowTopologyData preTopology = OpenFlowTopologyData.getPreTopology();
+		return Response.ok(200).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 
 	@Override
