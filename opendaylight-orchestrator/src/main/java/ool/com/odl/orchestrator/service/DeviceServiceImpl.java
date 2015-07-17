@@ -94,7 +94,7 @@ public class DeviceServiceImpl implements DeviceService {
 		
 		//return Response.ok(resDeviceBiz).type(MediaType.APPLICATION_JSON_TYPE).build();
 		OpenFlowTopologyData preTopology = OpenFlowTopologyData.getPreTopology();
-		return Response.ok(preTopology.data).type(MediaType.APPLICATION_JSON_TYPE).build();
+		return Response.ok(preTopology.getEdgeProperties().get(0).getEdge().getHeadNodeConnector().getNode().getId()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 
 	@Override

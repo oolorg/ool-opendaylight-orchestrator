@@ -1,8 +1,10 @@
 package ool.com.odl.orchestrator.background.task;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.util.TimerTask;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopology;
 import ool.com.odl.orchestrator.client.opendaylight.OpenFlowTopologyData;
@@ -26,11 +28,13 @@ public class TaskManager extends TimerTask {
 	
 	public void run() {
 		if (isFirst) {
-            isFirst = false;
-            init();
+			isFirst = false;
+			init();
 		}
-		String res = openFlowTopology.getTopology();
-		OpenFlowTopologyData preTopology = OpenFlowTopologyData.getPreTopology();
-		preTopology.data = res;
+		OpenFlowTopologyData.setCurrentTopology(openFlowTopology.getTopology());
+		Gson gson = new Gson();
+		Type type = new TypeToken<OpenFlowTopologyData>() {}.getType();
+		//OpenFlowTopologyData = gson.fromJson(res, type);
+		int a = 2;
 	}	
 }

@@ -10,11 +10,6 @@ public class TaskStarter implements ServletContextListener {
 	private void start() {
         Timer timer = new Timer();
         timer.schedule(new TaskManager(), 0, 5000);
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException ignore) {
-        }
-        timer.cancel();
 	}
 	
 	@Override
