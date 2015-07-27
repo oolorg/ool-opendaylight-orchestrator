@@ -20,6 +20,10 @@
 		<listener-class>ool.com.odl.orchestrator.background.task.TaskStarter</listener-class> 
 	</listener>
 
+	<listener>
+		<listener-class>ool.com.odl.orchestrator.event.SNMPManager</listener-class> 
+	</listener>
+
 	<servlet>
 		<servlet-name>CXFServlet</servlet-name>
 		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
